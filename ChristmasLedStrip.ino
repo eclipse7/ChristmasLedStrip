@@ -1,4 +1,3 @@
-
 // gamma correction table (gamma = 2.5)
 const unsigned int gamma25[256] = {
 0, 0, 0, 0, 0, 0, 1, 1, 
