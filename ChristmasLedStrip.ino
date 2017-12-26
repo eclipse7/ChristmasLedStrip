@@ -15,7 +15,7 @@ const unsigned int nonlinear[256] = {
 204, 207, 209, 212, 215, 217, 220, 223, 226, 228, 231, 234, 237, 240, 243, 
 246, 249, 252, 255};
 
-// gamma correction table
+// gamma correction table (gamma = 2.5)
 const unsigned int gamma25[256] = {
 0, 0, 0, 0, 0, 0, 1, 1, 
 1, 2, 2, 3, 4, 5, 6, 7, 
@@ -50,7 +50,7 @@ const unsigned int gamma25[256] = {
 7039, 7113, 7187, 7261, 7336, 7411, 7487, 7564, 
 7640, 7718, 7795, 7874, 7952, 8031, 8111, 8191 };
 
-wvoid change_color(unsigned int H, unsigned int S, unsigned int V) {
+void change_color(unsigned int H, unsigned int S, unsigned int V) {
     unsigned char Hi;
     unsigned char fr;
     unsigned int hue;
@@ -83,10 +83,9 @@ wvoid change_color(unsigned int H, unsigned int S, unsigned int V) {
         if (Hi==5) { red = V;     green = Vmin;  blue = Vdec;  }
     }
     
-    OCR4A = gamma22[red];
-    OCR4B = gamma22[green];
-    OCR4C = gamma22[blue];
-
+    OCR4A = gamma25[red];
+    OCR4B = gamma25[green];
+    OCR4C = gamma25[blue];
 }
 
 void setup() {
