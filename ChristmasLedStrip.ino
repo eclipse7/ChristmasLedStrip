@@ -33,6 +33,7 @@ const unsigned int gamma25[256] = {
 7039, 7113, 7187, 7261, 7336, 7411, 7487, 7564, 
 7640, 7718, 7795, 7874, 7952, 8031, 8111, 8191 };
 
+// hsv to rgb model
 void change_color(unsigned int H, unsigned int S, unsigned int V) {
     unsigned char Hi;
     unsigned char fr;
@@ -65,10 +66,16 @@ void change_color(unsigned int H, unsigned int S, unsigned int V) {
         if (Hi==4) { red = Vinc;  green = Vmin;  blue = V; }
         if (Hi==5) { red = V;     green = Vmin;  blue = Vdec;  }
     }
-    
+   
+// for led with common cathode -
     OCR4A = gamma25[red];
     OCR4B = gamma25[green];
     OCR4C = gamma25[blue];
+
+// for led with common anode +  
+//    OCR4A = 8191 - gamma25[red];
+//    OCR4B = 8191 - gamma25[green];
+//    OCR4C = 8191 - gamma25[blue];
 }
 
 void setup() {
@@ -94,7 +101,7 @@ void setup() {
 }
 
 unsigned int target_hue = 0;
-long randNumber;
+long randHue;
 void loop() {
  
 //  target_hue++;
@@ -102,14 +109,14 @@ void loop() {
 //  change_color(target_hue, 210, 255); 
 //  delay(50);
 
-randNumber = random(360);
+randHue = random(360);
   for (int i=10; i <= 255; i++) {
-    change_color(randNumber, 210, i);
+    change_color(randHue, 210, i);
     delay(50);
   }
   delay(1000);
   for (int i=255; i > 10 ; i--) {
-    change_color(randNumber, 200, i);
+    change_color(randHue, 200, i);
     delay(50);
   }
   
