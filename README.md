@@ -1,6 +1,6 @@
 # ChristmasLedStrip
 
-RGB led controller on Arduino Mega2560 with Gamma Correction and 14-bit PWM 
+RGB LED controller on Arduino Mega2560 with Gamma Correction and 14-bit PWM 
 
 ### Connection 
 ```
